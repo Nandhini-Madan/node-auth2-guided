@@ -17,9 +17,16 @@ function findByUsername(username) {
 		.where("u.username", username)
 		.first("u.id", "u.username", "u.password", "r.name as role")
 }
+async function findById(id){
+    return await db("users")
+                .select("id","username","password")
+                .where({id})
+                .first()
+}
 
 module.exports = {
 	add,
 	find,
 	findByUsername,
+	findById,
 }
